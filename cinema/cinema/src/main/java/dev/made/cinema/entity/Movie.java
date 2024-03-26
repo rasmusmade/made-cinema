@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,8 +20,11 @@ public class Movie {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String genre;
-    private Integer duration;
+    private String info;
     private String pg;
-    private Integer year;
+    private String genre;
+    private String director;
+    private String releasedate;
+    private Integer runtime;
+    private Integer tomatometer;
 }
