@@ -16,4 +16,9 @@ public class MovieService {
         return movieRepository.findAll();
     }
     public Optional<Movie> getMovieById(Long id) {return movieRepository.findById(id); }
+
+    public List<Movie> topTwelveMovies() {
+        List<Long> topTwelveIds = List.of(1005L, 1085L, 1035L, 1050L, 1111L, 1367L, 1428L, 1504L, 1720L, 1754L, 1768L, 1781L);
+        return movieRepository.findAllById(topTwelveIds);
+    }
 }

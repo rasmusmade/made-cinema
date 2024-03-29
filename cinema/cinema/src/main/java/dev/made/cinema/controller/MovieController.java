@@ -26,4 +26,10 @@ public class MovieController {
         return new ResponseEntity<Optional<Movie>>(movieService.getMovieById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/topmovies")
+    public ResponseEntity<List<Movie>> getTopTwelveMovies() {
+        return new ResponseEntity<List<Movie>>(movieService.topTwelveMovies(), HttpStatus.OK);
+    }
+
+
 }

@@ -12,7 +12,7 @@ body{
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 10px);
-  background: black;
+  background: whitesmoke;
   color: white;
   margin-top: 10px;
 }

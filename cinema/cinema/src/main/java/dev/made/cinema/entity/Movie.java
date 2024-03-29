@@ -1,8 +1,5 @@
 package dev.made.cinema.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +13,8 @@ import java.util.List;
 @Table(name = "movies")
 public class Movie {
 
-    @jakarta.persistence.Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String info;
@@ -27,4 +24,5 @@ public class Movie {
     private String releasedate;
     private Integer runtime;
     private Integer tomatometer;
+    private String posterurl;
 }

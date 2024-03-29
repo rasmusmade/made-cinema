@@ -1,0 +1,37 @@
+.top-movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.movie {
+    width: 23%; /* Adjust based on the gap you want */
+    margin-bottom: 20px;
+    background: #f0f0f0;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+.movie-poster {
+    height: 0;
+    padding-top: 100%; /* 16:9 Aspect Ratio */
+    background-size: cover;
+    background-position: center;
+}
+
+.choose-screening-btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.choose-screening-btn:hover {
+    background-color: #0056b3;
+}
