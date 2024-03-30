@@ -1,0 +1,15 @@
+.movie-poster {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding-left: 20px;
+    margin-left: 0;
+}
+
+.card-title, .card-text {
+    margin-bottom: 0.5rem;
+}

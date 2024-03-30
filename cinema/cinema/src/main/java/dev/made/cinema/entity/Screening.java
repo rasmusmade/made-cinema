@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -19,4 +21,6 @@ public class Screening {
     private Long movie_id;
     private Long theater_id;
     private Time start_time;
+    @Column(name = "start_date")
+    private LocalDate startDate;
 }

@@ -1,0 +1,17 @@
+.ticket-purchase img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ticket-purchase h2 {
+    margin-bottom: 20px;
+}
+
+.ticket-purchase p {
+    margin-bottom: 10px;
+    text-indent: 20px;
+}
+.content-indented {
+    padding-left: 20px;
+}

@@ -1,0 +1,26 @@
+package dev.made.cinema.services;
+
+import dev.made.cinema.entity.Movie;
+import dev.made.cinema.repository.ScreeningRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import dev.made.cinema.entity.Screening;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class ScreeningService {
+    @Autowired
+    private ScreeningRepository screeningRepository;
+
+    public List<Screening> getScreeningByDate(LocalDate date) {
+        return screeningRepository.findByStartDate(date);
+    }
+
+    public List<Screening> allScreenings() {
+        return screeningRepository.findAll();
+    }
+
+}
