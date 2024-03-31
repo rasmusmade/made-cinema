@@ -4,18 +4,28 @@ import axios from 'axios';
 import './Screenings.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const Screenings = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const [selectedDate, setSelectedDate] = useState(new Date('2024-04-01'));
     const [screenings, setScreenings] = useState([]);
     const [movies, setMovies] = useState([]);
     const [filteredScreenings, setFilteredScreenings] = useState([]);
     const navigate = useNavigate();
-    const handleBuyTicketClick = (screening) => {
-        navigate('/ticket', { state: { screening: screening, movie: screening.movie } });}
+
+
+    const formatDate = (date) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    };
+
+
+    const dates = Array.from({ length: 7 }, (_, i) => {
+        const date = new Date('2024-04-01');
+        date.setDate(date.getDate() + i);
+        return formatDate(date);
+    });
 
     useEffect(() => {
-
         const fetchMovies = async () => {
             const response = await axios.get('http://localhost:8080/topmovies');
             setMovies(response.data);
@@ -25,7 +35,6 @@ const Screenings = () => {
     }, []);
 
     useEffect(() => {
-
         const fetchScreenings = async () => {
             const formattedDate = selectedDate.toISOString().split('T')[0];
             const response = await axios.get(`http://localhost:8080/screenings?date=${formattedDate}`);
@@ -36,33 +45,44 @@ const Screenings = () => {
     }, [selectedDate]);
 
     useEffect(() => {
-
         const moviesById = movies.reduce((acc, movie) => {
             acc[movie.id] = movie;
             return acc;
         }, {});
 
-
         const result = screenings
             .filter(screening => new Date(screening.startDate).toDateString() === selectedDate.toDateString())
             .map(screening => {
-                return { ...screening, movie: moviesById[screening.movie_id] };
+                return { ...screening, movie: moviesById[screening.movieId] };
             });
         setFilteredScreenings(result);
     }, [screenings, movies, selectedDate]);
 
+    const handleBuyTicketClick = (screening) => {
+        navigate('/ticket', { state: { screening: screening, movie: screening.movie } });
+    };
+
     return (
         <Container>
             <Row className="mb-3">
-                <Col>
-                    <input
-                        type="date"
+                <Col className="selektbox">
+                    <select
                         value={selectedDate.toISOString().split('T')[0]}
                         onChange={(e) => setSelectedDate(new Date(e.target.value))}
-                    />
+                        className="form-select"
+                    >
+                        {dates.map((date, index) => {
+                            const dateValue = new Date('2024-04-01');
+                            dateValue.setDate(dateValue.getDate() + index);
+                            return (
+                                <option key={index} value={dateValue.toISOString().split('T')[0]}>
+                                    {date}
+                                </option>
+                            );
+                        })}
+                    </select>
                 </Col>
             </Row>
-
             {filteredScreenings.length > 0 ? (
                 filteredScreenings.map((screening) => (
                     <Row key={screening.id} className="mb-3">
@@ -95,6 +115,6 @@ const Screenings = () => {
             )}
         </Container>
     );
-}
+};
 
 export default Screenings;

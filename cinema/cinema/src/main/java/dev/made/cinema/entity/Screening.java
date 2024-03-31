@@ -18,9 +18,10 @@ public class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long movie_id;
+    @Column(name="movie_id")
+    private Long movieId;
     private Long theater_id;
     private Time start_time;
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private LocalDate startDate; //Named like that so that jparepository would understand the function name
 }

@@ -5,6 +5,8 @@ import TopMovies from './components/topMovies/TopMovies';
 import Header from "./components/header/Header";
 import Screenings from "./components/screenings/Screenings";
 import Ticket from "./components/ticket/Ticket";
+import ScreeningsByMovie from "./components/screenings/ScreeningsByMovie";
+import SeatSelector from "./components/seatSelector/SeatSelector";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                     <Route path="/" element={<TopMovies />} />
                     <Route path="/screenings" element={<Screenings/> } />
                     <Route path="/ticket" element={<Ticket/>}/>
+                    <Route path="/screenings/:movieId" element={<ScreeningsByMovie />} />
+                    <Route path="/ticket/seatSelector" element={<SeatSelector/>}/>
                 </Routes>
             </div>
         </div>
