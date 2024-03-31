@@ -27,6 +27,10 @@ public class ScreeningController {
         List<Screening> screenings = screeningService.getScreeningByDate(date);
         return ResponseEntity.ok(screenings);
     }
+    @GetMapping("/screening/{id}")
+    public ResponseEntity<Optional<Screening>> getScreeningById(@PathVariable Long id) {
+        return new ResponseEntity<Optional<Screening>>(screeningService.getScreeningById(id), HttpStatus.OK);
+    }
 
     @GetMapping("/screening")
     public ResponseEntity<List<Screening>> getAllScreenings() {

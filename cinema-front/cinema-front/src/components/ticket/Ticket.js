@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Button, Dropdown } from 'react-bootstrap';
-import {useNavigate} from "react-router-dom";
 import "./Ticket.css"
 
 const Ticket = () => {
@@ -10,10 +9,26 @@ const Ticket = () => {
     const location = useLocation();
     const { movie, screening } = location.state || {};
     const navigate = useNavigate();
-    const navigateToSeatSelector = () => {
-        navigate('/ticket/seatSelector', { state: { movie: movie, screening: screening, ticketType: ticketType, ticketQuantity: ticketQuantity }});
+
+    const ticketPrices = {
+        Regular: 10,
+        "Reduced": 5, // Assuming the key here matches the eventKey in your Dropdown.Item
     };
 
+    const navigateToSeatSelector = () => {
+        // Determine the ticket price based on the selected ticket type
+        const ticketPrice = ticketType ? ticketPrices[ticketType] : 0;
+
+        navigate('/ticket/seatSelector', {
+            state: {
+                movie: movie,
+                screening: screening,
+                ticketType: ticketType,
+                ticketQuantity: ticketQuantity,
+                ticketPrice: ticketPrice // Passing the ticket price to SeatSelector
+            }
+        });
+    };
 
     const handleTicketTypeSelection = (type) => {
         setTicketType(type);

@@ -1,25 +1,57 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import api from "../../api/axiosConfig";
 import './SeatSelector.css';
-
-// Configuration for initial seat occupation state
-// true represents an occupied seat, false represents an available seat
-const seatLayout = [
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, true, true, false, false, false],
-    [false, false, false, false, false, false, true, true],
-    [false, false, false, false, false, false, false, false],
-    [false, false, false, true, true, false, false, false],
-    [false, false, false, false, true, true, true, false],
-];
 
 const SeatSelector = () => {
     const [selectedSeats, setSelectedSeats] = useState(new Set());
-    const [ticketPrice, setTicketPrice] = useState(10);
+    const [seatLayout, setSeatLayout] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
-        const savedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
-        setSelectedSeats(new Set(savedSeats));
-    }, []);
+        const { ticketQuantity } = location.state || {};
+
+        const fetchSeatLayout = async () => {
+            const screeningId = location.state?.screening?.id;
+            if (!screeningId) {
+                console.error("Screening ID not found in location.state");
+                return;
+            }
+
+            try {
+                const response = await api.get(`/${screeningId}/seats`);
+                setSeatLayout(response.data);
+                randomlySelectSeats(response.data, ticketQuantity);
+            } catch (error) {
+                console.error("Error fetching seat layout:", error);
+            }
+        };
+
+        fetchSeatLayout();
+    }, [location]);
+
+    const randomlySelectSeats = (layout, quantity) => {
+        let availableSeats = [];
+        layout.forEach((row, rowIndex) => {
+            row.forEach((isOccupied, seatIndex) => {
+                if (!isOccupied) {
+                    availableSeats.push(`${rowIndex}-${seatIndex}`);
+                }
+            });
+        });
+
+
+        availableSeats = shuffleArray(availableSeats).slice(0, quantity);
+        setSelectedSeats(new Set(availableSeats));
+    };
+
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap
+        }
+        return array;
+    };
 
     const handleSeatClick = (row, index) => {
         const seatIndex = `${row}-${index}`;
@@ -27,18 +59,19 @@ const SeatSelector = () => {
 
         if (newSelectedSeats.has(seatIndex)) {
             newSelectedSeats.delete(seatIndex);
-        } else {
+        } else if (newSelectedSeats.size < location.state.ticketQuantity) {
             newSelectedSeats.add(seatIndex);
         }
+
         setSelectedSeats(newSelectedSeats);
-        localStorage.setItem('selectedSeats', JSON.stringify([...newSelectedSeats]));
+
     };
 
     return (
         <div className="seat-selector-wrapper">
             <div className="container">
-                <div className="screen"></div>
-                {seatLayout.map((row, rowIndex) => (
+                <div className="screen">Screen</div>
+                {seatLayout.length > 0 && seatLayout.map((row, rowIndex) => (
                     <div className="row" key={rowIndex}>
                         {row.map((isOccupied, seatIndex) => (
                             <div
@@ -51,7 +84,7 @@ const SeatSelector = () => {
                 ))}
             </div>
             <p className="text">
-                You have selected <span>{selectedSeats.size}</span> seats for a price of $<span>{selectedSeats.size * ticketPrice}</span>
+                You have selected <span>{selectedSeats.size}</span> seats for a price of $<span>{selectedSeats.size * location.state.ticketPrice}</span>
             </p>
         </div>
     );

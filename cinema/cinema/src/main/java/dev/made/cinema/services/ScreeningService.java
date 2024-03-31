@@ -9,6 +9,7 @@ import dev.made.cinema.entity.Screening;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScreeningService {
@@ -18,6 +19,7 @@ public class ScreeningService {
     public List<Screening> getScreeningByDate(LocalDate date) {
         return screeningRepository.findByStartDate(date);
     }
+    public Optional<Screening> getScreeningById(Long id) {return screeningRepository.findById(id); }
 
     public List<Screening> allScreenings() {
         return screeningRepository.findAll();
