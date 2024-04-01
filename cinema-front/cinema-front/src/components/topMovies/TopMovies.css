@@ -37,3 +37,7 @@
 .btn.choose-screening-btn:hover {
     background-color: #753b3b !important;
 }
+
+.text-black {
+    color: black;
+}

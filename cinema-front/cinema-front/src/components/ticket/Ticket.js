@@ -60,12 +60,18 @@ const Ticket = () => {
                 </Col>
                 <Col md={8} className="d-flex flex-column justify-content-between">
                     <div>
-                        <h2>{movie.title}</h2>
-                        <p>Genre: {movie.genre}</p>
-                        <p>Director: {movie.director}</p>
-                        <p>Synopsis: {movie.info}</p>
-                        <p>Screening Time: {screening.start_time}</p>
-                        <p>Rating: {movie.pg}</p>
+                        <h2 style={{fontWeight: 'bold', fontSize: '24px'}}>{movie.title}</h2>
+                        <p><strong>Genre:</strong> {movie.genre}</p>
+                        <p><strong>Director:</strong> {movie.director}</p>
+                        <p><strong>Synopsis:</strong> <span style={{
+                            display: 'block',
+                            marginLeft: '20px',
+                            textIndent: '-0px',
+                            marginTop: '10px'
+                        }}>{movie.info}</span></p>
+                        <p><strong>Screening Time:</strong> {screening.start_time}</p>
+                        <p><strong>Rating:</strong> {movie.pg}</p>
+                        <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
                     </div>
                     <div className="d-flex justify-content-end">
                         <Dropdown onSelect={handleTicketTypeSelection} className="mx-2">
