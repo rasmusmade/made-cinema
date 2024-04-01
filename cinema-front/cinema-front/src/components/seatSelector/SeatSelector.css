@@ -90,4 +90,11 @@
 
 .buy-button {
     margin-top: 30px;
+    background-color: rgb(220, 31, 31) !important;
+    background: white;
+    border: none !important;
+}
+
+.buy-button:hover {
+    background-color: #753b3b !important;
 }

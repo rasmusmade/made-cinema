@@ -14,7 +14,7 @@ const TicketPurchased = () => {
         <div >
             <div className="purchased-ticket" >
                 <p className="display-4">Tickets purchased successfully!</p>
-                <Button variant="primary" onClick={goToHome}>Go home</Button>
+                <Button variant="primary" className="button" onClick={goToHome}>Go home</Button>
             </div>
         </div>
     );

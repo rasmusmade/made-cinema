@@ -5,7 +5,7 @@
 -- Dumped from database version 15.6
 -- Dumped by pg_dump version 15.6
 
--- Started on 2024-03-29 20:02:29
+-- Started on 2024-04-01 19:13:54
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,10 +23,10 @@ SET row_security = off;
 -- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
 --
 
-CREATE SCHEMA public;
 
 
-ALTER SCHEMA public OWNER TO pg_database_owner;
+
+
 
 --
 -- TOC entry 3393 (class 0 OID 0)
@@ -34,7 +34,7 @@ ALTER SCHEMA public OWNER TO pg_database_owner;
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
 
-COMMENT ON SCHEMA public IS 'standard public schema';
+
 
 
 SET default_tablespace = '';
@@ -137,7 +137,8 @@ CREATE TABLE public.screening (
     id bigint NOT NULL,
     movie_id bigint,
     theater_id bigint,
-    start_time time(6) without time zone
+    start_time time(6) without time zone,
+    start_date date
 );
 
 
@@ -1307,7 +1308,35 @@ COPY public.purchase (id, user_id, purchase_date, total_amount, screening_id) FR
 -- Data for Name: screening; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.screening (id, movie_id, theater_id, start_time) FROM stdin;
+COPY public.screening (id, movie_id, theater_id, start_time, start_date) FROM stdin;
+2	1428	1	10:00:00	2024-04-01
+3	1367	1	13:00:00	2024-04-01
+4	1111	1	16:00:00	2024-04-01
+5	1035	1	19:00:00	2024-04-01
+6	1754	1	10:00:00	2024-04-02
+7	1720	1	13:00:00	2024-04-02
+8	1085	1	16:00:00	2024-04-02
+9	1768	1	19:00:00	2024-04-02
+10	1050	1	10:00:00	2024-04-03
+11	1005	1	13:00:00	2024-04-03
+12	1504	1	16:00:00	2024-04-03
+13	1781	1	19:00:00	2024-04-03
+14	1754	1	10:00:00	2024-04-04
+15	1428	1	13:00:00	2024-04-04
+16	1504	1	16:00:00	2024-04-04
+19	1781	1	19:00:00	2024-04-04
+20	1720	1	10:00:00	2024-04-05
+21	1035	1	13:00:00	2024-04-05
+22	1005	1	16:00:00	2024-04-05
+23	1111	1	19:00:00	2024-04-05
+24	1768	1	10:00:00	2024-04-06
+25	1367	1	13:00:00	2024-04-06
+26	1050	1	16:00:00	2024-04-06
+27	1085	1	19:00:00	2024-04-06
+28	1720	1	10:00:00	2024-04-07
+29	1768	1	13:00:00	2024-04-07
+30	1085	1	16:00:00	2024-04-07
+31	1754	1	19:00:00	2024-04-07
 \.
 
 
@@ -1318,6 +1347,7 @@ COPY public.screening (id, movie_id, theater_id, start_time) FROM stdin;
 --
 
 COPY public.theater (id, theater_name, total_seats) FROM stdin;
+1	Made theater	121
 \.
 
 
@@ -1366,7 +1396,7 @@ SELECT pg_catalog.setval('public.movies_movieid_seq', 1877, true);
 -- Name: purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.purchase_id_seq', 1, false);
+SELECT pg_catalog.setval('public.purchase_id_seq', 4, true);
 
 
 --
@@ -1375,7 +1405,7 @@ SELECT pg_catalog.setval('public.purchase_id_seq', 1, false);
 -- Name: screening_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.screening_id_seq', 1, false);
+SELECT pg_catalog.setval('public.screening_id_seq', 31, true);
 
 
 --
@@ -1384,7 +1414,7 @@ SELECT pg_catalog.setval('public.screening_id_seq', 1, false);
 -- Name: theater_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.theater_id_seq', 1, false);
+SELECT pg_catalog.setval('public.theater_id_seq', 1, true);
 
 
 --
@@ -1540,7 +1570,7 @@ ALTER TABLE ONLY public.user_movie
     ADD CONSTRAINT fk_user_movie_movie FOREIGN KEY (movie_id) REFERENCES public.movies(id) ON DELETE CASCADE;
 
 
--- Completed on 2024-03-29 20:02:29
+-- Completed on 2024-04-01 19:13:54
 
 --
 -- PostgreSQL database dump complete

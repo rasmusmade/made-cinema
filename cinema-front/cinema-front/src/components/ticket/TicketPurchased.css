@@ -6,3 +6,11 @@
     flex-direction: column;
     padding-top: 0;
 }
+
+.button {
+    background-color: rgb(220, 31, 31) !important;
+    background: white;
+}
+.button:hover {
+    background-color: #753b3b !important;
+}

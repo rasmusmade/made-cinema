@@ -3,15 +3,24 @@
     color: crimson;
 }
 
-.navbar-brand-custom {
-    color: gold;
+.brand-custom{
+    color: gold !important;
+    text-decoration-color: #ffed25 !important;
 }
 
 .custom-nav .nav-link {
-    color: black;
+    color: whitesmoke !important;
 }
 
 .custom-nav .nav-dropdown {
-    color: black;
+    color: #de0f0f !important;
+}
+
+.login {
+    color: whitesmoke !important;
+}
+
+.register {
+    color: whitesmoke !important;
 }
 

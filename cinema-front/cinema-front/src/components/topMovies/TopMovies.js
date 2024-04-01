@@ -27,13 +27,13 @@ const TopMovies = () => {
         navigate(`/screenings/${movieId}`)
     }
     return (
-        <Container className="top-movies-container mt-3">
+        <Container className="top-movies-container">
             <Row xs={1} md={4} className="g-4">
                 {topMovies.map((movie) => (
                     <Col key={movie.id}>
-                        <Card>
+                        <Card className="d-flex flex-column">
                             <Card.Img variant="top" src={movie.posterurl} />
-                            <Card.Body>
+                            <Card.Body className="d-flex flex-column">
                                 <Card.Title>{movie.title}</Card.Title>
                                 <Card.Text>{movie.genre}</Card.Text>
                                 <Button variant="primary" onClick={() => handleChooseScreening(movie.id)} className="choose-screening-btn">Choose Screening</Button>

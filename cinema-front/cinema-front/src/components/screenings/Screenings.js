@@ -84,25 +84,25 @@ const Screenings = () => {
                     </select>
                 </Col>
             </Row>
-            {filteredScreenings.length > 0 ? (
+            {filteredScreenings.length > 0 && movies.length > 0 ? (
                 filteredScreenings.map((screening) => (
                     <Row key={screening.id} className="mb-3">
                         <Card className="d-flex flex-row">
                             <div className="w-25">
                                 <Card.Img
                                     variant="left"
-                                    src={screening.movie.posterurl}
+                                    src={screening.movie?.posterurl || 'defaultPosterUrlHere'} // Use optional chaining and provide a default URL
                                     style={{ maxWidth: '100%', height: 'auto', maxHeight: '200px', objectFit: 'cover' }}
                                 />
                             </div>
                             <Card.Body className="d-flex justify-content-between align-items-center flex-grow-1" style={{ paddingLeft: '20px' }}>
                                 <div className="card-content" style={{marginLeft: '0'}}>
-                                    <Card.Title className="card-title">{screening.movie.title}</Card.Title>
-                                    <Card.Text className="card-text">{screening.movie.genre}</Card.Text>
-                                    <Card.Text className="card-text">{screening.movie.pg}</Card.Text>
+                                    <Card.Title className="card-title">{screening.movie?.title || 'Unknown Title'}</Card.Title>
+                                    <Card.Text className="card-text">{screening.movie?.genre || 'Unknown Genre'}</Card.Text>
+                                    <Card.Text className="card-text">{screening.movie?.pg || 'Rating Not Available'}</Card.Text>
                                 </div>
                                 <Card.Text>{screening.start_time}</Card.Text>
-                                <Button variant="primary" onClick={() => handleBuyTicketClick(screening)}>Buy Ticket</Button>
+                                <Button variant="primary" className="button" onClick={() => handleBuyTicketClick(screening)}>Buy Ticket</Button>
                             </Card.Body>
                         </Card>
                     </Row>

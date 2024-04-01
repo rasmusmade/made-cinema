@@ -46,7 +46,7 @@ const ScreeningsByMovie = () => {
     return (
         <Container>
             {screenings.map((screening) => ( //Using map method with screenings to display them in rows and cards
-                <Row key={screening.id} className="mb-3">
+                <Row key={screening.id} className="mt-3">
                     <Card className="d-flex flex-row">
                         <div className="w-25">
                             <Card.Img
@@ -64,7 +64,7 @@ const ScreeningsByMovie = () => {
 
                             </div>
                             <Card.Text>{screening.start_time}</Card.Text>
-                            <Button variant="primary" onClick={() => handleBuyTicketClick(screening)}>Buy Ticket</Button>
+                            <Button variant="primary" className="button" onClick={() => handleBuyTicketClick(screening)}>Buy Ticket</Button>
                         </Card.Body>
                     </Card>
                 </Row>
