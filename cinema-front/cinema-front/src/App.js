@@ -7,7 +7,7 @@ import Screenings from "./components/screenings/Screenings";
 import Ticket from "./components/ticket/Ticket";
 import ScreeningsByMovie from "./components/screenings/ScreeningsByMovie";
 import SeatSelector from "./components/seatSelector/SeatSelector";
-
+import TicketPurchased from "./components/ticket/TicketPurchased";
 function App() {
     return (
         <div className="App">
@@ -19,6 +19,7 @@ function App() {
                     <Route path="/ticket" element={<Ticket/>}/>
                     <Route path="/screenings/:movieId" element={<ScreeningsByMovie />} />
                     <Route path="/ticket/seatSelector" element={<SeatSelector/>}/>
+                    <Route path="/ticketpurchased" element={<TicketPurchased/>}/>
                 </Routes>
             </div>
         </div>

@@ -7,12 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ScreeningsByMovie = () => {
+    //States
     const [screenings, setScreenings] = useState([]);
     const { movieId } = useParams();
     const [movie, setMovie] = useState([])
+    //Hook for navigation
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { //Fetching screenings by movie id
         const fetchScreenings = async () => {
             try {
                 const response = await api.get(`http://localhost:8080/screenings/${movieId}`);
@@ -25,7 +27,7 @@ const ScreeningsByMovie = () => {
         fetchScreenings();
     }, [movieId]);
 
-    useEffect(() => {
+    useEffect(() => { //Fetching movie by movieid
         const fetchMovieById = async () => {
             try {
                 const response = await api.get(`http://localhost:8080/${movieId}`);
@@ -38,12 +40,12 @@ const ScreeningsByMovie = () => {
         fetchMovieById();
     }, [movieId]);
 
-    const handleBuyTicketClick = (screening) => {
+    const handleBuyTicketClick = (screening) => {//Function to what happens when the user clikcs on the buy ticket button
         navigate('/ticket', { state: { screening: screening, movie: movie } });}
 
     return (
         <Container>
-            {screenings.map((screening) => (
+            {screenings.map((screening) => ( //Using map method with screenings to display them in rows and cards
                 <Row key={screening.id} className="mb-3">
                     <Card className="d-flex flex-row">
                         <div className="w-25">

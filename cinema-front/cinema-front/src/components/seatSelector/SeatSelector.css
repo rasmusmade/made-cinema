@@ -67,16 +67,16 @@
 .seat-selector-wrapper .screen {
     background-color: #8d8d8d;
     height: 70px;
-    width: 60%; /* Adjusted to make the screen narrower */
-    margin: 15px auto; /* Center the screen horizontally */
+    width: 60%;
+    margin: 15px auto;
     transform: rotateX(-45deg);
     box-shadow: 0 3px 10px rgba(70, 70, 70, 0.75);
-    position: relative; /* Needed to position the text inside it */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white; /* Color of the text */
-    font-size: 20px; /* Size of the text */
+    color: white;
+    font-size: 20px;
     font-family: 'CinematicFont', Arial, sans-serif;
 }
 
@@ -86,4 +86,8 @@
 
 .seat-selector-wrapper p.text span {
     color: #000000;
+}
+
+.buy-button {
+    margin-top: 30px;
 }

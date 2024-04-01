@@ -4,28 +4,30 @@ import { Container, Row, Col, Card, Button, Dropdown } from 'react-bootstrap';
 import "./Ticket.css"
 
 const Ticket = () => {
+    //States
     const [ticketType, setTicketType] = useState('');
     const [ticketQuantity, setTicketQuantity] = useState(0);
+    //Navigation hooks
     const location = useLocation();
     const { movie, screening } = location.state || {};
     const navigate = useNavigate();
 
+    //Ticket prices
     const ticketPrices = {
         Regular: 10,
-        "Reduced": 5, // Assuming the key here matches the eventKey in your Dropdown.Item
+        "Reduced": 5,
     };
 
     const navigateToSeatSelector = () => {
-        // Determine the ticket price based on the selected ticket type
-        const ticketPrice = ticketType ? ticketPrices[ticketType] : 0;
+        const ticketPrice = ticketType ? ticketPrices[ticketType] : 0;// Determine the ticket price based on the selected ticket type
 
-        navigate('/ticket/seatSelector', {
+        navigate('/ticket/seatSelector', {//Passing info to the seatselector
             state: {
                 movie: movie,
                 screening: screening,
                 ticketType: ticketType,
                 ticketQuantity: ticketQuantity,
-                ticketPrice: ticketPrice // Passing the ticket price to SeatSelector
+                ticketPrice: ticketPrice
             }
         });
     };

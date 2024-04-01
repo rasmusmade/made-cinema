@@ -4,28 +4,30 @@ import axios from 'axios';
 import './Screenings.css';
 import { useNavigate } from 'react-router-dom';
 
+//Screenings component that displays screenings
 const Screenings = () => {
-
+    //States
     const [selectedDate, setSelectedDate] = useState(new Date('2024-04-01'));
     const [screenings, setScreenings] = useState([]);
     const [movies, setMovies] = useState([]);
     const [filteredScreenings, setFilteredScreenings] = useState([]);
+    //Hook for navigating
     const navigate = useNavigate();
 
 
-    const formatDate = (date) => {
+    const formatDate = (date) => { //Function to make the dates more readable in the dropdown menu.
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
     };
 
 
-    const dates = Array.from({ length: 7 }, (_, i) => {
+    const dates = Array.from({ length: 7 }, (_, i) => { //Function that generates an array for the 7 days starting from 1st of april.
         const date = new Date('2024-04-01');
         date.setDate(date.getDate() + i);
         return formatDate(date);
     });
 
-    useEffect(() => {
+    useEffect(() => { //Fetching the movies from backend
         const fetchMovies = async () => {
             const response = await axios.get('http://localhost:8080/topmovies');
             setMovies(response.data);
@@ -34,10 +36,10 @@ const Screenings = () => {
         fetchMovies();
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { //Fetching screenings by date, does it every time the date changes
         const fetchScreenings = async () => {
             const formattedDate = selectedDate.toISOString().split('T')[0];
-            const response = await axios.get(`http://localhost:8080/screenings?date=${formattedDate}`);
+            const response = await axios.get(`http://localhost:8080/screeningsbydate?date=${formattedDate}`);
             setScreenings(response.data);
         };
 
@@ -45,20 +47,19 @@ const Screenings = () => {
     }, [selectedDate]);
 
     useEffect(() => {
-        const moviesById = movies.reduce((acc, movie) => {
+        const moviesById = movies.reduce((acc, movie) => { //Mapping object for movies for better access
             acc[movie.id] = movie;
             return acc;
         }, {});
 
         const result = screenings
-            .filter(screening => new Date(screening.startDate).toDateString() === selectedDate.toDateString())
             .map(screening => {
-                return { ...screening, movie: moviesById[screening.movieId] };
+                return { ...screening, movie: moviesById[screening.movieId] }; //Attaching movie details for each screening
             });
         setFilteredScreenings(result);
     }, [screenings, movies, selectedDate]);
 
-    const handleBuyTicketClick = (screening) => {
+    const handleBuyTicketClick = (screening) => { //Function to what happens when the user clikcs on the buy ticket button
         navigate('/ticket', { state: { screening: screening, movie: screening.movie } });
     };
 

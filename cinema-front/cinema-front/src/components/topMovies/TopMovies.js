@@ -5,10 +5,12 @@ import "./TopMovies.css";
 import {useNavigate} from "react-router-dom";
 
 const TopMovies = () => {
+    //State
     const [topMovies, setTopMovies] = useState([]);
+    //Navigation hook
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => {//Fetching movies
         const fetchTopMovies = async () => {
             try {
                 const response = await api.get('/topmovies');
@@ -21,7 +23,7 @@ const TopMovies = () => {
         fetchTopMovies();
     }, []);
 
-    const handleChooseScreening = (movieId) => {
+    const handleChooseScreening = (movieId) => {//Function that takes the user to screenings by movieid when clicking on the choose screening button
         navigate(`/screenings/${movieId}`)
     }
     return (

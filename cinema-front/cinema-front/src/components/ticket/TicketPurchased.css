@@ -1,0 +1,8 @@
+.purchased-ticket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    flex-direction: column;
+    padding-top: 0;
+}
