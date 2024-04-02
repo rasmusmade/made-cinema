@@ -3,6 +3,7 @@ import api from "../../api/axiosConfig";
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'; // Import Form for the select input
 import "./TopMovies.css";
 import { useNavigate } from "react-router-dom";
+import tomatometerIcon from './Rotten_Tomatoes.svg.png';
 
 const TopMovies = () => {
     const [topMovies, setTopMovies] = useState([]);
@@ -53,9 +54,21 @@ const TopMovies = () => {
                         <Card className="d-flex flex-column">
                             <Card.Img variant="top" src={movie.posterurl} />
                             <Card.Body className="d-flex flex-column">
-                                <Card.Title className="text-black">{movie.title}</Card.Title>
-                                <Card.Text className="text-black">{movie.genre}</Card.Text>
-                                <Button variant="primary" onClick={() => handleChooseScreening(movie.id)} className="choose-screening-btn">Choose Screening</Button>
+                                {/* Content Section */}
+                                <div className="movie-content">
+                                    <Card.Title className="text-black">{movie.title}</Card.Title>
+                                    <Card.Text className="text-black">{movie.genre}</Card.Text>
+                                </div>
+
+                                {/* Action Section */}
+                                <div className="movie-actions">
+                                    <div className="tomatometer-wrapper">
+                                        <img src={tomatometerIcon} alt="Tomatometer"
+                                             style={{width: '20px', height: '20px', marginRight: '5px'}}/> {movie.tomatometer}
+                                    </div>
+                                    <Button variant="primary" onClick={() => handleChooseScreening(movie.id)}
+                                            className="choose-screening-btn">Choose Screening</Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>

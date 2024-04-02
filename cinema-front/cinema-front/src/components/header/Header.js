@@ -6,6 +6,14 @@ import './Header.css';
 
 //Header component using Bootstrap's navbar. Template taken from https://getbootstrap.com/docs/4.0/components/navbar/ and later styled and modifyed by me
 function Header() {
+    const handleLogin = () => {
+        console.log('Login clicked');
+    };
+
+    const handleRegister = () => {
+        console.log('Register clicked');
+    };
+
     return (
         <Navbar expand="lg" className="custom-navbar">
             <Container>
@@ -17,8 +25,8 @@ function Header() {
                         <Nav.Link href="/screenings">Screenings</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
-                        <Nav.Link className="login">Log in</Nav.Link>
-                        <Nav.Link className="register">Register</Nav.Link>
+                        <Nav.Link className="login" onClick={handleLogin}>Log in</Nav.Link>
+                        <Nav.Link className="register" onClick={handleRegister}>Register</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

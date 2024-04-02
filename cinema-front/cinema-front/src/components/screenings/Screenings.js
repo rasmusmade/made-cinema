@@ -88,7 +88,7 @@ const Screenings = () => {
                 filteredScreenings.map((screening) => (
                     <Row key={screening.id} className="mb-3">
                         <Card className="d-flex flex-row">
-                            <div className="w-25">
+                            <div className="w-25 poster-container">
                                 <Card.Img
                                     variant="left"
                                     src={screening.movie?.posterurl || 'defaultPosterUrlHere'} // Use optional chaining and provide a default URL

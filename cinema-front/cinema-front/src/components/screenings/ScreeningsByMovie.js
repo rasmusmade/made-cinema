@@ -48,7 +48,7 @@ const ScreeningsByMovie = () => {
             {screenings.map((screening) => ( //Using map method with screenings to display them in rows and cards
                 <Row key={screening.id} className="mt-3">
                     <Card className="d-flex flex-row">
-                        <div className="w-25">
+                        <div className="w-25 poster-container">
                             <Card.Img
                                 variant="left"
                                 src={movie.posterurl}

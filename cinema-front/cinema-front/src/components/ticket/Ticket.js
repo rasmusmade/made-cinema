@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Button, Dropdown } from 'react-bootstrap';
 import "./Ticket.css"
+import tomatometerIcon from "../topMovies/Rotten_Tomatoes.svg.png";
 
 const Ticket = () => {
     //States
@@ -72,6 +73,13 @@ const Ticket = () => {
                         <p><strong>Screening Time:</strong> {screening.start_time}</p>
                         <p><strong>Rating:</strong> {movie.pg}</p>
                         <p><strong>Runtime:</strong> {movie.runtime} minutes</p>
+                        <p><strong>Tomatometer:</strong> {movie.tomatometer} <img src={tomatometerIcon}
+                                                                                  alt="Tomatometer"
+                                                                                  style={{
+                                                                                      width: '20px',
+                                                                                      height: '20px',
+                                                                                      marginRight: '5px'
+                                                                                  }}/></p>
                     </div>
                     <div className="d-flex justify-content-end">
                         <Dropdown onSelect={handleTicketTypeSelection} className="mx-2">

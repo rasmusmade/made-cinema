@@ -3,7 +3,7 @@
 }
 
 
-.card {
+.top-movies-container .card {
     display:flex;
     margin-bottom: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-.card-img-top {
+.top-movies-container .card-img-top {
     width: 100%;
     height: 400px;
     object-fit: cover;
@@ -39,5 +39,31 @@
 }
 
 .text-black {
+    color: black;
+}
+
+.top-movies-container .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.top-movies-container .movie-content {
+    flex-grow: 1;
+}
+
+.top-movies-container .movie-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.top-movies-container .tomatometer-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
     color: black;
 }

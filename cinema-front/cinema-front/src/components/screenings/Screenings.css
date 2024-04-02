@@ -5,12 +5,13 @@
     object-fit: cover;
 }
 
-.card-content {
+.screenings .card-content {
     padding-left: 20px;
     margin-left: 0;
+    display: flex;
 }
 
-.card-title, .card-text {
+.screenings .card-title, .card-text {
     margin-bottom: 0.5rem;
 }
 
@@ -25,4 +26,12 @@
 }
 .button:hover {
     background-color: #753b3b !important;
+}
+
+.poster-container {
+    padding-left: 80px; /* Adjust as needed */
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
 }
