@@ -2,20 +2,22 @@
 A web-application for recommending movies and seats to cinema customers. Made for CGI 2024 summer internship application.
 
 # How to start
-Your computer needs to have git, java, maven and docker installed. 
+Your computer needs to have git, JDK, maven and docker installed. 
 
 Git download links and instructions: https://git-scm.com/downloads
 
-Java download links and instructions: https://www.java.com/en/download/manual.jsp
+JDK download links and instructions: https://www.oracle.com/java/technologies/downloads/
 
-Maeven download links and instructiojns: https://maven.apache.org/download.cgi
+Maven download links and instructiojns: https://maven.apache.org/download.cgi
+
+Don't forget to add both the Maven and JDK 21 binary directories to the environment path!
 
 Docker download: https://www.docker.com/products/docker-desktop/
 
 1. Open terminal. Navigate to the directory where you want to clone the project.
 1. Clone the repo: git clone https://github.com/rasmusmade/made-cinema.git
 2. Navigate to the backend home directory: /made-cinema/cinema/cinema
-3. run: mvn package
+3. run: mvn package -DskipTests
 4. After the build is complete navigate back to the project home directory: /made-cinema
 5. After making sure your docker desktop is running, run the following command in the project home directory: docker-compose up --build
 6. go to localhost:3000 to access the application
