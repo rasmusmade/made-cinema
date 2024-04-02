@@ -36,5 +36,5 @@ The seat selection algorithm currently only recommends seats if the number of ti
 As usual, I underestimated the time each problem would take to solve, so in the final result, I am missing the user login functionality. That was supposed to be for watch history. The database has unpopulated tables; these were meant for the login functionality. I also would have liked to tweak the styling of the application a bit more, but I thought the functionality to be more important.
 
 # Conclusion
-The project took me about 60 hours to complete, and I would have loved to have had more time to complete all the functionalities. The hardest part was designing the front-end, as my experience with JavaScript was very limited.
+The project took me 40+ hours to complete, and I would have loved to have had more time to complete all the functionalities. The hardest part was designing the front-end, as my experience with JavaScript was very limited.
 
